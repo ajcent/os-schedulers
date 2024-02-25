@@ -117,7 +117,6 @@ function App() {
   return (
     <div className='App'>
       <MantineProvider
-        defaultColorScheme='auto'
         theme={{
           fontFamily: "Poppins, Verdana, sans-serif",
           fontFamilyMonospace: "Poppins, Monaco, Courier, monospace",

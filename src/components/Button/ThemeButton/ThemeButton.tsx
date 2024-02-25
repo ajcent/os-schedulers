@@ -1,13 +1,20 @@
-import { Button, useMantineColorScheme } from "@mantine/core";
+import {
+  Button,
+  useComputedColorScheme,
+  useMantineColorScheme,
+} from "@mantine/core";
 
 import { FaSun } from "react-icons/fa6";
 import { FaMoon } from "react-icons/fa";
 
 function ThemeButton() {
   const { colorScheme, setColorScheme } = useMantineColorScheme();
+  const computedColorScheme = useComputedColorScheme("light", {
+    getInitialValueInEffect: true,
+  });
 
   const toggleColorScheme = () => {
-    setColorScheme(colorScheme === "light" ? "light" : "dark");
+    setColorScheme(computedColorScheme === "light" ? "dark" : "light");
   };
 
   return (
