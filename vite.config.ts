@@ -5,7 +5,7 @@ import path from "node:path";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: "/os-schedulers/",
+  base: "/os-schedulers/dist/",
   resolve: {
     alias: {
       components: path.resolve(__dirname, "./src/components"),

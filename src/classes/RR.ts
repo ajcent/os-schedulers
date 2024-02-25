@@ -79,7 +79,6 @@ class RRScheduler extends Scheduler {
         doneProcesses.push(process);
       }
     }
-    console.log(doneProcesses);
     return doneProcesses;
   }
 

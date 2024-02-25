@@ -7,7 +7,7 @@ function ThemeButton() {
   const { colorScheme, setColorScheme } = useMantineColorScheme();
 
   const toggleColorScheme = () => {
-    setColorScheme(colorScheme === "dark" ? "light" : "dark");
+    setColorScheme(colorScheme === "light" ? "light" : "dark");
   };
 
   return (
