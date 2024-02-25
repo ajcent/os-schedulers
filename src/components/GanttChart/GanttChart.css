@@ -1,0 +1,25 @@
+.gantt-chart {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.gantt-chart__item {
+  margin-bottom: 3rem;
+}
+
+.arrival,
+.end {
+  position: absolute;
+  bottom: 0;
+  font-size: 0.85rem !important;
+}
+
+.arrival {
+  left: 0;
+  translate: -50% 120%;
+}
+
+.end {
+  right: 0;
+  translate: 50% 120%;
+}
