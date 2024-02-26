@@ -12,7 +12,7 @@ function IconText(props: IconTextProps) {
   return (
     <Flex align='center' gap={5} w='100%'>
       {icon}
-      <Text>{text}</Text>
+      <Text fw={500}>{text}</Text>
     </Flex>
   );
 }

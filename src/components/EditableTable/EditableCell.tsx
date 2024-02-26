@@ -171,6 +171,10 @@ function EditableCell(props: EditableCellProps) {
                 onChange={(value) =>
                   handleInput(value, processKeys[3], process)
                 }
+                onBlur={() =>
+                  !process.getBurstTime() &&
+                  handleInput(0, processKeys[3], process)
+                }
               />
             </Input.Wrapper>
             {hiddenColumns[0] && (
@@ -182,6 +186,10 @@ function EditableCell(props: EditableCellProps) {
                   value={process.getPriority()}
                   onChange={(value) =>
                     handleInput(value, processKeys[5], process)
+                  }
+                  onBlur={() =>
+                    !process.getPriority() &&
+                    handleInput(0, processKeys[5], process)
                   }
                 />
               </Input.Wrapper>
@@ -344,6 +352,10 @@ function EditableCell(props: EditableCellProps) {
             <UnstyledNumberInput
               value={process.getBurstTime()}
               onChange={(value) => handleInput(value, processKeys[3], process)}
+              onBlur={() =>
+                !process.getBurstTime() &&
+                handleInput(0, processKeys[3], process)
+              }
             />
           </Table.Td>
 
@@ -353,6 +365,10 @@ function EditableCell(props: EditableCellProps) {
                 value={process.getPriority()}
                 onChange={(value) =>
                   handleInput(value, processKeys[5], process)
+                }
+                onBlur={() =>
+                  !process.getPriority() &&
+                  handleInput(0, processKeys[5], process)
                 }
               />
             </Table.Td>

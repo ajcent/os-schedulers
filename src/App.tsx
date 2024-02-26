@@ -15,6 +15,7 @@ import {
   Text,
   Badge,
   Blockquote,
+  Tabs,
 } from "@mantine/core";
 import "@mantine/core/styles.css";
 
@@ -144,7 +145,7 @@ function App() {
                 iconSize={30}
                 color='indigo'
                 icon={<IoMdInformationCircleOutline size={20} />}
-                mt='xl'
+                mt='md'
                 cite='– Some Wise Man?'>
                 Different learning reference might teach variations in how a
                 scheduling algorithm works.
@@ -156,7 +157,7 @@ function App() {
               based on how I was taught.
             </Text>
 
-            <Group gap='sm' mt='xl'>
+            <Group gap='sm' mt='md'>
               <Badge
                 color='indigo'
                 size='lg'
@@ -196,10 +197,10 @@ function App() {
                 size='sm'
               />
               <Title order={1} size='1.25rem' mr='auto' visibleFrom='sm'>
-                Scheduling Algorithm
+                Scheduler Calculator
               </Title>
               <Title order={1} size='h5' mr='auto' hiddenFrom='sm'>
-                Scheduling Algorithm
+                Scheduler Calculator
               </Title>
               <ThemeButton />
             </Flex>
@@ -208,16 +209,25 @@ function App() {
           <AppShell.Navbar p='md'>
             <ScrollArea scrollbarSize={8} scrollHideDelay={500}>
               <Group w='100%'>
-                <Stack w='100%' gap={5}>
+                <Stack w='100%' gap='5'>
                   <IconText text='Options' icon={<IoMdSettings />} />
-                  <Group w='100%'>
+                  <Group w='100%' gap='xs'>
                     <DropDown
-                      label='Select a Scheduler'
+                      label={
+                        <Text
+                          style={{
+                            fontSize: "0.85rem",
+                            fontWeight: 400,
+                            opacity: 0.6,
+                          }}>
+                          Select a Scheduler
+                        </Text>
+                      }
                       data={getSelectOptions(SCHEDULER_NAME)}
                       onChange={(data) => handleSelect(data, 0)}
                       defaultValue={schedulers[0]}
                     />
-                    <Group grow w='100%' mb={15}>
+                    <Group grow w='100%' gap='xs' mb={15}>
                       <>
                         <Button
                           visibleFrom='md'
@@ -266,12 +276,19 @@ function App() {
                 {schedulers[0] === SCHEDULER_NAME.MLQ && (
                   <Stack gap='5' w='100%'>
                     <IconText text='Queue Level' icon={<SiOpslevel />} />
-                    <Group w='100%' mb={15}>
+                    <Group w='100%' mb={15} gap='xs'>
                       {queueLevels.map(([pos, queueLevel]) => {
                         return (
                           <DropDown
                             key={pos + queueLevel}
-                            label={`Select ${queueLevel}`}
+                            label={
+                              <Text
+                                style={{
+                                  fontSize: "0.85rem",
+                                  fontWeight: 400,
+                                  opacity: 0.6,
+                                }}>{`Select ${queueLevel}`}</Text>
+                            }
                             data={getSelectOptions(SCHEDULER_NAME, [
                               SCHEDULER_NAME.MLQ,
                             ])}
@@ -287,14 +304,23 @@ function App() {
                 {schedulers.some(
                   (scheduler) => scheduler === SCHEDULER_NAME.RR
                 ) && (
-                  <Stack gap={5} w='100%'>
+                  <Stack gap='5' w='100%'>
                     <IconText text='Quantum Time' icon={<IoTime />} />
                     <NumberInput
                       placeholder={`Saved Value : ${quantumTime[0]}`}
                       min={0}
                       max={50}
                       w='100%'
-                      label='Insert Quantum Time'
+                      label={
+                        <Text
+                          style={{
+                            fontSize: "0.85rem",
+                            fontWeight: 400,
+                            opacity: 0.6,
+                          }}>
+                          Insert Quantum Time
+                        </Text>
+                      }
                       value={quantumTime[0]}
                       allowNegative={false}
                       allowDecimal={false}
@@ -310,22 +336,33 @@ function App() {
           </AppShell.Navbar>
 
           <AppShell.Main>
-            <Stack>
-              {ganttChart && (
-                <Stack gap='sm'>
-                  <IconText text='Gantt Chart' icon={<FaChartPie />} />
-                  <GanttChart processes={ganttChart} />
+            <Tabs defaultValue='table'>
+              <Tabs.List>
+                <Tabs.Tab value='table' leftSection={<FaTable />}>
+                  Table
+                </Tabs.Tab>
+                <Tabs.Tab value='gantt-chart' leftSection={<FaChartPie />}>
+                  Gantt Chart
+                </Tabs.Tab>
+              </Tabs.List>
+              <Tabs.Panel value='gantt-chart'>
+                {ganttChart && (
+                  <Stack mt='xl'>
+                    <GanttChart processes={ganttChart} />
+                  </Stack>
+                )}
+              </Tabs.Panel>
+
+              <Tabs.Panel value='table'>
+                <Stack mt='xl'>
+                  <EditableTable
+                    processes={processes}
+                    setProcesses={setProcesses}
+                    hiddenColumns={hiddenColumns}
+                  />
                 </Stack>
-              )}
-              <Stack gap={0}>
-                <IconText text='Table' icon={<FaTable />} />
-                <EditableTable
-                  processes={processes}
-                  setProcesses={setProcesses}
-                  hiddenColumns={hiddenColumns}
-                />
-              </Stack>
-            </Stack>
+              </Tabs.Panel>
+            </Tabs>
           </AppShell.Main>
         </AppShell>
       </MantineProvider>
