@@ -232,7 +232,8 @@ function App() {
                         <Button
                           visibleFrom='md'
                           leftSection={<GrPowerReset />}
-                          variant='outline'
+                          variant='light'
+                          color='red'
                           onClick={resetCalculation}>
                           Reset
                         </Button>
@@ -240,7 +241,8 @@ function App() {
                         <Button
                           hiddenFrom='md'
                           leftSection={<GrPowerReset />}
-                          variant='outline'
+                          variant='light'
+                          color='red'
                           onClick={() => {
                             resetCalculation();
                             toggle();

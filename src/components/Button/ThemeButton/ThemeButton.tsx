@@ -4,8 +4,9 @@ import {
   useMantineColorScheme,
 } from "@mantine/core";
 
-import { FaSun } from "react-icons/fa6";
+// import { FaSun } from "react-icons/fa6";
 import { FaMoon } from "react-icons/fa";
+import { IoSunny } from "react-icons/io5";
 
 function ThemeButton() {
   const { colorScheme, setColorScheme } = useMantineColorScheme();
@@ -23,7 +24,9 @@ function ThemeButton() {
       onClick={toggleColorScheme}
       variant='default'
       aria-label='Toggle color scheme'
-      leftSection={colorScheme === "dark" ? <FaMoon /> : <FaSun />}>
+      leftSection={
+        colorScheme === "dark" ? <FaMoon size={12} /> : <IoSunny size={16} />
+      }>
       {colorScheme === "dark" ? "Dark" : "Light"}
     </Button>
   );
